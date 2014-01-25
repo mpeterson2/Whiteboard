@@ -2,7 +2,9 @@ package components;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
@@ -10,41 +12,39 @@ import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import properties.Properties;
+import properties.PropertiesListener;
 
-public class ColorPalette extends FlowPane {
+public class ColorPalette extends FlowPane implements PropertiesListener {
 
     public static final double BTN_SIZE = 25;
     public static final double BTN_GAP = 2;
     public static final int BTN_PER_ROW = 8;
     public static final double WIDTH = BTN_SIZE * BTN_PER_ROW + BTN_GAP * BTN_PER_ROW;
+    public static final Border BTN_BORDER = new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(5.0), null, null));
 
     private FlowPane buttonPane;
     private boolean isForGround;
 
+    VBox foregroundInfo;
+    VBox backgroundInfo;
+    Button foregroundBtn;
+    Button backgroundBtn;
+
     public ColorPalette() {
 	isForGround = true;
+	setHgap(2.0);
 
-	Button forColor = new Button();
-	forColor.setBackground(new Background(new BackgroundFill(Properties.getColor(), new CornerRadii(5.0), null)));
-	Button backColor = new Button();
-	backColor.setBackground(new Background(new BackgroundFill(Properties.getBackground(), new CornerRadii(5.0), null)));
+	foregroundInfo = new VBox();
+	foregroundBtn = new Button();
+	foregroundBtn.setBorder(BTN_BORDER);
+	createBigButton(foregroundBtn, foregroundInfo, true);
 
-	forColor.setOnAction(new EventHandler<ActionEvent>() {
-	    @Override
-	    public void handle(ActionEvent arg0) {
-		isForGround = true;
-	    }
-
-	});
-
-	backColor.setOnAction(new EventHandler<ActionEvent>() {
-	    @Override
-	    public void handle(ActionEvent arg0) {
-		isForGround = false;
-	    }
-	});
+	backgroundInfo = new VBox();
+	backgroundBtn = new Button();
+	createBigButton(backgroundBtn, backgroundInfo, false);
 
 	buttonPane = new FlowPane();
 	buttonPane.setPrefWidth(WIDTH);
@@ -73,9 +73,10 @@ public class ColorPalette extends FlowPane {
 	for (int i = 0; i < BTN_PER_ROW; i++)
 	    addColor(Color.WHITE, false);
 
-	getChildren().add(forColor);
-	getChildren().add(backColor);
+	getChildren().add(foregroundInfo);
+	getChildren().add(backgroundInfo);
 	getChildren().add(buttonPane);
+	Properties.addListener(this);
     }
 
     private void addColor(final Color color, boolean enabled) {
@@ -85,9 +86,7 @@ public class ColorPalette extends FlowPane {
 	b.setMinSize(BTN_SIZE, BTN_SIZE);
 	b.setBackground(new Background(new BackgroundFill(color,
 		new CornerRadii(5.0), null)));
-	b.setBorder(new Border(new BorderStroke(Color.BLACK,
-		BorderStrokeStyle.SOLID, new CornerRadii(5.0),
-		null, null)));
+	b.setBorder(BTN_BORDER);
 
 	b.setOnAction(new EventHandler<ActionEvent>() {
 	    @Override
@@ -105,7 +104,50 @@ public class ColorPalette extends FlowPane {
 	    b.setDisable(true);
     }
 
-    public void enableButton(Button b) {
-	b.setDisable(false);
+    private void createBigButton(Button btn, VBox pane, final boolean forground) {
+	Color color;
+	if (forground)
+	    color = Properties.getColor();
+	else
+	    color = Properties.getBackground();
+
+	btn.setBackground(new Background(new BackgroundFill(color, new CornerRadii(5.0), null)));
+	btn.setPrefSize(75, 50);
+
+	btn.setOnAction(new EventHandler<ActionEvent>() {
+	    @Override
+	    public void handle(ActionEvent arg0) {
+		isForGround = forground;
+		if (forground) {
+		    foregroundBtn.setBorder(BTN_BORDER);
+		    backgroundBtn.setBorder(null);
+		}
+		else {
+		    foregroundBtn.setBorder(null);
+		    backgroundBtn.setBorder(BTN_BORDER);
+		}
+	    }
+	});
+
+	pane.setAlignment(Pos.CENTER);
+	pane.getChildren().add(btn);
+	if (forground)
+	    pane.getChildren().add(new Label("Foreground"));
+	else
+	    pane.getChildren().add(new Label("Background"));
+
     }
+
+    @Override
+    public void onForColorChng(Color color) {
+	foregroundBtn.setBackground(new Background(new BackgroundFill(color, new CornerRadii(5.0), null)));
+    }
+
+    @Override
+    public void onBackColorChng(Color color) {
+	backgroundBtn.setBackground(new Background(new BackgroundFill(color, new CornerRadii(5.0), null)));
+    }
+
+    @Override
+    public void onWidthChng(double width) {}
 }
