@@ -1,12 +1,17 @@
 package run;
+
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import tools.Pen;
 import tools.Tool;
+
+import components.ColorPalette;
+
 import drawing.Canvas;
 
 public class Driver extends Application {
@@ -27,7 +32,13 @@ public class Driver extends Application {
 	BorderPane root = new BorderPane();
 	root.setCenter(canvas);
 
-	primaryStage.setScene(new Scene(root, 300, 250));
+	FlowPane top = new FlowPane();
+	ColorPalette cp = new ColorPalette();
+	top.getChildren().add(cp);
+	root.setTop(top);
+
+
+	primaryStage.setScene(new Scene(root, 500, 500));
 
 	// Center it on my primary monitor.
 	Rectangle2D screen = Screen.getScreens().get(Screen.getScreens().size() - 1).getBounds();
