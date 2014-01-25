@@ -21,7 +21,7 @@ public class Properties {
     public static void setColor(Color color) {
 	Properties.color = color;
 	for (PropertiesListener listener : listeners) {
-	    listener.onForColorChng(color);
+	    listener.onForeColorChng(color);
 	}
     }
 

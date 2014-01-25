@@ -28,10 +28,10 @@ public class ColorPalette extends FlowPane implements PropertiesListener {
     private FlowPane buttonPane;
     private boolean isForGround;
 
-    VBox foregroundInfo;
-    VBox backgroundInfo;
-    Button foregroundBtn;
-    Button backgroundBtn;
+    private VBox foregroundInfo;
+    private VBox backgroundInfo;
+    private Button foregroundBtn;
+    private Button backgroundBtn;
 
     public ColorPalette() {
 	isForGround = true;
@@ -139,7 +139,7 @@ public class ColorPalette extends FlowPane implements PropertiesListener {
     }
 
     @Override
-    public void onForColorChng(Color color) {
+    public void onForeColorChng(Color color) {
 	foregroundBtn.setBackground(new Background(new BackgroundFill(color, new CornerRadii(5.0), null)));
     }
 

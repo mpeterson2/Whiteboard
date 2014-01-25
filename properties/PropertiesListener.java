@@ -4,7 +4,7 @@ import javafx.scene.paint.Color;
 
 public interface PropertiesListener {
 
-    void onForColorChng(Color color);
+    void onForeColorChng(Color color);
 
     void onBackColorChng(Color color);
 

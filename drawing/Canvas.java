@@ -33,5 +33,5 @@ public class Canvas extends Pane implements PropertiesListener {
     @Override
     public void onWidthChng(double width) {}
     @Override
-    public void onForColorChng(Color color) {}
+    public void onForeColorChng(Color color) {}
 }
