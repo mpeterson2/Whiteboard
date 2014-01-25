@@ -50,28 +50,28 @@ public class ColorPalette extends FlowPane implements PropertiesListener {
 	buttonPane.setPrefWidth(WIDTH);
 	buttonPane.setHgap(BTN_GAP);
 
-	addColor(Color.WHITE, true);
-	addColor(Color.LIGHTGRAY, true);
-	addColor(Color.DARKGRAY, true);
-	addColor(Color.BLACK, true);
+	addColor(Color.WHITE);
+	addColor(Color.LIGHTGRAY);
+	addColor(Color.DARKGRAY);
+	addColor(Color.BLACK);
 
-	addColor(Color.RED, true);
-	addColor(Color.rgb(255, 127, 0), true);
-	addColor(Color.YELLOW, true);
-	addColor(Color.rgb(127, 255, 0), true);
+	addColor(Color.RED);
+	addColor(Color.rgb(255, 127, 0));
+	addColor(Color.YELLOW);
+	addColor(Color.rgb(127, 255, 0));
 
-	addColor(Color.GREEN, true);
-	addColor(Color.rgb(0, 255, 127), true);
-	addColor(Color.CYAN, true);
-	addColor(Color.rgb(0, 127, 255), true);
+	addColor(Color.GREEN);
+	addColor(Color.rgb(0, 255, 127));
+	addColor(Color.CYAN);
+	addColor(Color.rgb(0, 127, 255));
 
-	addColor(Color.BLUE, true);
-	addColor(Color.rgb(127, 0, 255), true);
-	addColor(Color.MAGENTA, true);
-	addColor(Color.rgb(255, 0, 127), true);
+	addColor(Color.BLUE);
+	addColor(Color.rgb(127, 0, 255));
+	addColor(Color.MAGENTA);
+	addColor(Color.rgb(255, 0, 127));
 
 	for (int i = 0; i < BTN_PER_ROW; i++)
-	    addColor(Color.WHITE, false);
+	    addColor(Color.WHITE);
 
 	getChildren().add(foregroundInfo);
 	getChildren().add(backgroundInfo);
@@ -79,7 +79,7 @@ public class ColorPalette extends FlowPane implements PropertiesListener {
 	Properties.addListener(this);
     }
 
-    private void addColor(final Color color, boolean enabled) {
+    private void addColor(final Color color) {
 	Button b = new Button();
 	b.setPrefSize(BTN_SIZE, BTN_SIZE);
 	b.setMaxSize(BTN_SIZE, BTN_SIZE);
@@ -99,9 +99,6 @@ public class ColorPalette extends FlowPane implements PropertiesListener {
 	});
 
 	buttonPane.getChildren().add(b);
-
-	if (!enabled)
-	    b.setDisable(true);
     }
 
     private void createBigButton(Button btn, VBox pane, final boolean forground) {
