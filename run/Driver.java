@@ -1,12 +1,20 @@
 package run;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import properties.Defaults;
 import tools.Pen;
 import tools.Tool;
 
@@ -26,6 +34,7 @@ public class Driver extends Application {
 
 
 	Canvas canvas = new Canvas();
+	canvas.setBorder(new Border(new BorderStroke(Color.DARKGRAY, BorderStrokeStyle.SOLID, null, null)));
 	new Tool().setTool(new Pen(canvas));
 	new Pen(canvas);
 
@@ -33,7 +42,9 @@ public class Driver extends Application {
 	root.setCenter(canvas);
 
 	FlowPane top = new FlowPane();
+	top.setBackground(new Background(new BackgroundFill(Defaults.DEFAULT_PANE_COLOR, null, null)));
 	ColorPalette cp = new ColorPalette();
+	top.setAlignment(Pos.CENTER_RIGHT);
 	top.getChildren().add(cp);
 	root.setTop(top);
 
