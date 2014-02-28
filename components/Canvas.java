@@ -1,4 +1,4 @@
-package drawing;
+package components;
 
 import javafx.geometry.Insets;
 import javafx.scene.layout.Background;

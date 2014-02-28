@@ -13,7 +13,6 @@ import javafx.scene.paint.Color;
 import properties.Defaults;
 import tools.Pen;
 import tools.Tool;
-import drawing.Canvas;
 
 public class Whiteboard extends BorderPane {
 

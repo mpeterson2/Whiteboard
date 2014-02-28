@@ -4,7 +4,8 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeLineJoin;
 import properties.Properties;
-import drawing.Canvas;
+
+import components.Canvas;
 
 public class Pen extends Tool {
 

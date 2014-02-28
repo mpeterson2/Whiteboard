@@ -1,7 +1,9 @@
 package tools;
+
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import drawing.Canvas;
+
+import components.Canvas;
 
 public class Tool implements EventHandler<MouseEvent> {
 
