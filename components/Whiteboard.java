@@ -22,21 +22,25 @@ public class Whiteboard extends BorderPane {
 	Canvas canvas = new Canvas();
 	canvas.setBorder(new Border(new BorderStroke(Color.DARKGRAY, BorderStrokeStyle.SOLID, null, null)));
 
+	// Set up tools
+	Tool tools = new Tool();
+	tools.setTool(new Pen(canvas));
+
 	// Setup top panel
 	HBox top = new HBox();
 	top.setBackground(new Background(new BackgroundFill(Defaults.DEFAULT_PANE_COLOR, null, null)));
+	ToolsPanel tp = new ToolsPanel(tools, canvas);
 	WidthPanel wp = new WidthPanel();
 	ColorPalette cp = new ColorPalette();
 
 	top.setAlignment(Pos.CENTER_RIGHT);
 	top.setSpacing(10);
 	top.setPadding(new Insets(5));
+
+	top.getChildren().add(tp);
 	top.getChildren().add(wp);
 	top.getChildren().add(cp);
 	top.autosize();
-
-	// Set up tools
-	new Tool().setTool(new Pen(canvas));
 
 	setCenter(canvas);
 	setTop(top);

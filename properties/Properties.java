@@ -57,10 +57,13 @@ public class Properties {
 	return width;
     }
 
-    public static void updateListeners() {}
-
     public static void addListener(PropertiesListener listener) {
 	listeners.add(listener);
+
+	// Be sure the listener has the correct values.
+	listener.onForeColorChng(getColor());
+	listener.onBackColorChng(getBackground());
+	listener.onWidthChng(getWidth());
     }
 
     public static void removeListener(PropertiesListener listener) {

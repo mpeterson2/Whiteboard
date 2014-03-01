@@ -41,7 +41,7 @@ public class Tool implements EventHandler<MouseEvent> {
 
     public void setTool(Tool tool) {
 	if (this.tool != null) {
-	    this.tool.getCanvas().removeEventHandler(MouseEvent.ANY, tool);
+	    this.tool.getCanvas().removeEventHandler(MouseEvent.ANY, this.tool);
 	    tool.setMover(this.tool.getMover());
 	}
 	else {

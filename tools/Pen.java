@@ -10,13 +10,13 @@ import components.Canvas;
 
 public class Pen extends Tool {
 
-    private Line line;
+    protected Line line;
 
     public Pen(Canvas canvas) {
 	super(canvas);
     }
 
-    private void startLine(double x, double y) {
+    protected void startLine(double x, double y) {
 	line = new Line();
 	line.setStartX(x);
 	line.setStartY(y);
@@ -26,7 +26,7 @@ public class Pen extends Tool {
 	line.setStrokeLineJoin(StrokeLineJoin.BEVEL);
     }
 
-    private void endLine(double x, double y) {
+    protected void endLine(double x, double y) {
 	line.setEndX(x);
 	line.setEndY(y);
 	getCanvas().addShape(line);
@@ -43,5 +43,10 @@ public class Pen extends Tool {
 	super.onMouseDrag(e);
 	endLine(e.getX(), e.getY());
 	startLine(e.getX(), e.getY());
+    }
+
+    @Override
+    public void onMouseReleased(MouseEvent e) {
+	endLine(e.getX(), e.getY());
     }
 }
