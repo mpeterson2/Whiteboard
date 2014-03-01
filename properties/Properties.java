@@ -14,9 +14,9 @@ import javafx.scene.paint.Color;
 public class Properties {
     public static Properties PROPERTIES;
 
-    private static Color color = Color.BLACK;
-    private static Color background = Color.WHITE;
-    private static double width = 5.0;
+    private static Color color = Defaults.PEN_COLOR;
+    private static Color background = Defaults.BG_COLOR;
+    private static double width = Defaults.WIDTH;
     private static List<PropertiesListener> listeners = new ArrayList<>();
 
     /**
