@@ -49,6 +49,7 @@ public class Tool implements EventHandler<MouseEvent> {
 	}
 
 	this.tool = tool;
+	tool.getCanvas().setCursor(tool.getCursor());
 	tool.getCanvas().addEventHandler(MouseEvent.ANY, tool);
     }
 

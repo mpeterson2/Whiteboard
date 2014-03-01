@@ -19,7 +19,7 @@ public class Mover extends Tool {
     public void onMouseDown(MouseEvent e) {
 	iniX = e.getX();
 	iniY = e.getY();
-	getCanvas().setCursor(Cursor.HAND);
+	getCanvas().setCursor(Cursor.MOVE);
     }
 
     @Override

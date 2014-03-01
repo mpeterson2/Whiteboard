@@ -1,4 +1,5 @@
 package tools;
+
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.StrokeLineCap;
@@ -43,5 +44,4 @@ public class Pen extends Tool {
 	endLine(e.getX(), e.getY());
 	startLine(e.getX(), e.getY());
     }
-
 }
