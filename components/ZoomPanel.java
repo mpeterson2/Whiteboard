@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.HBox;
+import properties.Defaults;
 
 /**
  * A panel that controls the zoom of a Canvas.
@@ -22,6 +23,7 @@ public class ZoomPanel extends HBox {
 	// Create the slider/label.
 	final Slider zoomSlider = new Slider(100, 1000, 100);
 	final Label zoomLabel = new Label("Zoom: 100%");
+	zoomLabel.setTextFill(Defaults.TEXT_COLOR);
 
 	// Setup the listener for the slider.
 	zoomSlider.valueProperty().addListener(new ChangeListener<Number>() {

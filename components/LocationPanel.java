@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import properties.Defaults;
 
 public class LocationPanel extends HBox {
 
@@ -11,6 +12,7 @@ public class LocationPanel extends HBox {
 	super();
 
 	final Label locationLbl = new Label("Location: (X: 0, Y: 0)");
+	locationLbl.setTextFill(Defaults.TEXT_COLOR);
 
 	canvas.setOnMouseMoved(new EventHandler<MouseEvent>() {
 	    @Override

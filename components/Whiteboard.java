@@ -56,7 +56,7 @@ public class Whiteboard extends BorderPane {
 	ColorPalette colorPalette = new ColorPalette();
 
 	// Setup some styling.
-	top.setBackground(new Background(new BackgroundFill(Defaults.DEFAULT_PANE_COLOR, null, null)));
+	top.setBackground(new Background(new BackgroundFill(Defaults.PANE_COLOR, null, null)));
 	topControls.setSpacing(10);
 	topControls.setPadding(new Insets(5));
 	HBox.setHgrow(toolsPanel, Priority.ALWAYS);
@@ -78,7 +78,7 @@ public class Whiteboard extends BorderPane {
 	HBox.setHgrow(spacer, Priority.ALWAYS);
 
 	// Add the components.
-	bottom.setBackground(new Background(new BackgroundFill(Defaults.DEFAULT_PANE_COLOR, null, null)));
+	bottom.setBackground(new Background(new BackgroundFill(Defaults.PANE_COLOR, null, null)));
 	bottom.getChildren().add(new ZoomPanel(canvas));
 	bottom.getChildren().add(spacer);
 	bottom.getChildren().add(new LocationPanel(canvas));

@@ -7,6 +7,7 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import properties.Defaults;
 import properties.Properties;
 import properties.PropertiesListener;
 
@@ -24,6 +25,7 @@ public class ColorPalette extends GridPane implements PropertiesListener {
     public ColorPalette() {
 	// Create background color picker.
 	Label backLabel = new Label("Background");
+	backLabel.setTextFill(Defaults.TEXT_COLOR);
 	backColorPicker = new ColorPicker(Color.WHITE);
 	backColorPicker.setPrefWidth(103.0);
 	backColorPicker.setOnAction(new EventHandler<ActionEvent>() {
@@ -35,6 +37,7 @@ public class ColorPalette extends GridPane implements PropertiesListener {
 
 	// Create foreground color picker.
 	Label foreLabel = new Label("Foreground");
+	foreLabel.setTextFill(Defaults.TEXT_COLOR);
 	foreColorPicker = new ColorPicker(Color.BLACK);
 	foreColorPicker.setPrefWidth(103.0);
 	foreColorPicker.setOnAction(new EventHandler<ActionEvent>() {

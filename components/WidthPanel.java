@@ -8,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
+import properties.Defaults;
 import properties.Properties;
 
 /**
@@ -26,6 +27,7 @@ public class WidthPanel extends VBox {
 	setAlignment(Pos.CENTER);
 	widthSlider = new Slider(0.1, 100.0, Properties.getWidth());
 	widthLabel = new Label("Width: " + widthSlider.getValue());
+	widthLabel.setTextFill(Defaults.TEXT_COLOR);
 
 	// Setup what happens when the slider changes.
 	widthSlider.valueProperty().addListener(new ChangeListener<Number>() {
