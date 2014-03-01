@@ -53,6 +53,7 @@ public class ColorPalette extends GridPane implements PropertiesListener {
 	// Center the labels.
 	setHalignment(backLabel, HPos.CENTER);
 	setHalignment(foreLabel, HPos.CENTER);
+	Properties.addListener(this);
     }
 
     /**
@@ -74,6 +75,7 @@ public class ColorPalette extends GridPane implements PropertiesListener {
      */
     @Override
     public void onForeColorChng(Color color) {
+	System.out.println(color);
 	foreColorPicker.setValue(color);
     }
 

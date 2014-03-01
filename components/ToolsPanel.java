@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import tools.ColorPicker;
 import tools.Eraser;
 import tools.Pen;
 import tools.Tool;
@@ -22,10 +23,12 @@ public class ToolsPanel extends HBox {
 
     public static String PEN_ICON = "../images/pen.png";
     public static String ERASER_ICON = "../images/eraser.png";
+    public static String COLOR_PICKER_ICON = "../images/color-picker.png";
     public static int BTN_SIZE = 25;
 
     private Button penBtn;
     private Button eraserBtn;
+    private Button colorPickerBtn;
     private Tool tools;
     private Canvas canvas;
 
@@ -42,8 +45,10 @@ public class ToolsPanel extends HBox {
 	// Create the buttons.
 	penBtn = new Button();
 	eraserBtn = new Button();
+	colorPickerBtn = new Button();
 	createBtn(penBtn, PEN_ICON);
 	createBtn(eraserBtn, ERASER_ICON);
+	createBtn(colorPickerBtn, COLOR_PICKER_ICON);
 	setupButtons();
 
 	// The pen is the initial button.
@@ -75,7 +80,6 @@ public class ToolsPanel extends HBox {
 		tools.setTool(new Pen(canvas));
 		setActive(penBtn);
 	    }
-
 	});
 
 	// Change the tool to the eraser when clicked.
@@ -85,7 +89,14 @@ public class ToolsPanel extends HBox {
 		tools.setTool(new Eraser(canvas));
 		setActive(eraserBtn);
 	    }
+	});
 
+	colorPickerBtn.setOnAction(new EventHandler<ActionEvent>() {
+	    @Override
+	    public void handle(ActionEvent arg0) {
+		tools.setTool(new ColorPicker(canvas));
+		setActive(colorPickerBtn);
+	    }
 	});
     }
 
