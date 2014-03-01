@@ -22,6 +22,11 @@ import tools.Tool;
  */
 public class Whiteboard extends BorderPane {
 
+    Canvas canvas;
+    Tool tools;
+    VBox top;
+    HBox bottom;
+
     /**
      * Create a Whiteboard object.
      * 
@@ -30,15 +35,25 @@ public class Whiteboard extends BorderPane {
     public Whiteboard() {
 
 	// Setup canvas
-	Canvas canvas = new Canvas();
+	canvas = new Canvas();
 	canvas.setBorder(new Border(new BorderStroke(Color.DARKGRAY, BorderStrokeStyle.SOLID, null, null)));
 
-	// Set up tools
-	Tool tools = new Tool();
+	// Setup tools
+	tools = new Tool();
 	tools.setTool(new Pen(canvas));
 
-	// Setup top panel
-	VBox top = new VBox();
+	// Setup top/bottom panels.
+	setupTop();
+	setupBottom();
+
+	// Setup the border layout.
+	setCenter(canvas);
+	setTop(top);
+	setBottom(bottom);
+    }
+
+    private void setupTop() {
+	top = new VBox();
 	HBox topControls = new HBox();
 	top.setBackground(new Background(new BackgroundFill(Defaults.DEFAULT_PANE_COLOR, null, null)));
 	ToolsPanel tp = new ToolsPanel(tools, canvas);
@@ -50,7 +65,7 @@ public class Whiteboard extends BorderPane {
 	topControls.setSpacing(10);
 	topControls.setPadding(new Insets(5));
 
-	// Add children to top.
+	// Add children to top controls panel.
 	topControls.getChildren().add(tp);
 	topControls.getChildren().add(wp);
 	topControls.getChildren().add(cp);
@@ -58,9 +73,9 @@ public class Whiteboard extends BorderPane {
 
 	top.getChildren().add(new WhiteboardMenu(canvas));
 	top.getChildren().add(topControls);
+    }
 
-	// Setup the border layout.
-	setCenter(canvas);
-	setTop(top);
+    private void setupBottom() {
+	bottom = new HBox();
     }
 }
