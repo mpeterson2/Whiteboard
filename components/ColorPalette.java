@@ -75,7 +75,6 @@ public class ColorPalette extends GridPane implements PropertiesListener {
      */
     @Override
     public void onForeColorChng(Color color) {
-	System.out.println(color);
 	foreColorPicker.setValue(color);
     }
 
