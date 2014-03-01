@@ -1,7 +1,5 @@
 package components;
 
-import java.text.DecimalFormat;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
@@ -26,7 +24,7 @@ public class WidthPanel extends VBox {
 	// Create the GUI.
 	setAlignment(Pos.CENTER);
 	widthSlider = new Slider(0.1, 100.0, Properties.getWidth());
-	widthLabel = new Label("Width: " + widthSlider.getValue());
+	widthLabel = new Label("Width: " + (int) widthSlider.getValue());
 	widthLabel.setTextFill(Defaults.TEXT_COLOR);
 
 	// Setup what happens when the slider changes.
@@ -34,8 +32,7 @@ public class WidthPanel extends VBox {
 	    @Override
 	    public void changed(ObservableValue<? extends Number> ov, Number oldVal, Number newVal) {
 		// Make it look good with a format.
-		DecimalFormat df = new DecimalFormat("#.#");
-		double val = Double.parseDouble(df.format(newVal));
+		int val = newVal.intValue();
 		widthLabel.setText("Width: " + val);
 		Properties.setWidth(val);
 	    }
