@@ -1,13 +1,13 @@
 package components;
 
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import properties.Defaults;
 import tools.Pen;
 import tools.Tool;
@@ -32,7 +32,6 @@ public class Whiteboard extends BorderPane {
     public Whiteboard() {
 	// Setup canvas
 	canvas = new Canvas();
-	setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
 
 	// Setup tools
 	tools = new Tool();
@@ -49,23 +48,23 @@ public class Whiteboard extends BorderPane {
     }
 
     private void setupTop() {
+	// Create the components.
 	top = new VBox();
 	HBox topControls = new HBox();
-	top.setBackground(new Background(new BackgroundFill(Defaults.DEFAULT_PANE_COLOR, null, null)));
-	ToolsPanel tp = new ToolsPanel(tools, canvas);
-	WidthPanel wp = new WidthPanel();
-	ColorPalette cp = new ColorPalette();
+	ToolsPanel toolsPanel = new ToolsPanel(tools, canvas);
+	WidthPanel widthPanel = new WidthPanel();
+	ColorPalette colorPalette = new ColorPalette();
 
 	// Setup some styling.
-	topControls.setAlignment(Pos.CENTER_LEFT);
+	top.setBackground(new Background(new BackgroundFill(Defaults.DEFAULT_PANE_COLOR, null, null)));
 	topControls.setSpacing(10);
 	topControls.setPadding(new Insets(5));
+	HBox.setHgrow(toolsPanel, Priority.ALWAYS);
 
 	// Add children to top controls panel.
-	topControls.getChildren().add(tp);
-	topControls.getChildren().add(wp);
-	topControls.getChildren().add(cp);
-	topControls.autosize();
+	topControls.getChildren().add(toolsPanel);
+	topControls.getChildren().add(widthPanel);
+	topControls.getChildren().add(colorPalette);
 
 	top.getChildren().add(new WhiteboardMenu(canvas));
 	top.getChildren().add(topControls);
@@ -73,7 +72,15 @@ public class Whiteboard extends BorderPane {
 
     private void setupBottom() {
 	bottom = new HBox();
+
+	// Create a spacer.
+	Region spacer = new Region();
+	HBox.setHgrow(spacer, Priority.ALWAYS);
+
+	// Add the components.
 	bottom.setBackground(new Background(new BackgroundFill(Defaults.DEFAULT_PANE_COLOR, null, null)));
 	bottom.getChildren().add(new ZoomPanel(canvas));
+	bottom.getChildren().add(spacer);
+	bottom.getChildren().add(new LocationPanel(canvas));
     }
 }

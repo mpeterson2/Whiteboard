@@ -20,6 +20,8 @@ import properties.PropertiesListener;
 public class Canvas extends Pane implements PropertiesListener {
 
     private List<Shape> erase;
+    double locationX = 0.0;
+    double locationY = 0.0;
 
     /**
      * Create a Canvas object.
@@ -67,6 +69,30 @@ public class Canvas extends Pane implements PropertiesListener {
     public void setZoom(double zoom) {
 	setScaleX(zoom);
 	setScaleY(zoom);
+    }
+
+    /**
+     * Get the X distance this Canvas is from the origin
+     */
+    public double getLocationX() {
+	return locationX;
+    }
+
+    /**
+     * Get the Y distance this Canvas is from the origin
+     */
+    public double getLocationY() {
+	return locationY;
+    }
+
+    /**
+     * Set the X and Y distance this Canvas is from the origin.
+     * 
+     * Should be done when changing the translation.
+     */
+    public void setLocation(double x, double y) {
+	locationX = x;
+	locationY = y;
     }
 
     /**

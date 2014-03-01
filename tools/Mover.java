@@ -39,6 +39,13 @@ public class Mover extends Tool {
 	    c.setTranslateY(c.getTranslateY() + e.getY() - iniY);
 	}
 
+	// Set the location of the Canvas.
+	if (!getCanvas().getChildren().isEmpty()) {
+	    double transX = getCanvas().getChildren().get(0).getTranslateX();
+	    double transY = getCanvas().getChildren().get(0).getTranslateY();
+	    getCanvas().setLocation(transX + e.getY() - iniX, transY + e.getY() - iniY);
+	}
+
 	// Set the inital X/Y points for the next drag.
 	iniX = e.getX();
 	iniY = e.getY();

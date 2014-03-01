@@ -2,8 +2,10 @@ package components;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.HBox;
 
 /**
@@ -18,7 +20,7 @@ public class ZoomPanel extends HBox {
 	super();
 
 	// Create the slider/label.
-	Slider zoomSlider = new Slider(1, 1000, 100);
+	final Slider zoomSlider = new Slider(100, 1000, 100);
 	final Label zoomLabel = new Label("Zoom: 100%");
 
 	// Setup the listener for the slider.
@@ -32,6 +34,14 @@ public class ZoomPanel extends HBox {
 		zoomLabel.setText("Zoom: " + (int) zoom + "%");
 	    }
 
+	});
+
+	// Zoom in/out when scrolling.
+	canvas.setOnScroll(new EventHandler<ScrollEvent>() {
+	    @Override
+	    public void handle(ScrollEvent e) {
+		zoomSlider.setValue(zoomSlider.getValue() + e.getDeltaY() * 1.5);
+	    }
 	});
 
 	// Add the slider/label.
