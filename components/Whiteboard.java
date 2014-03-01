@@ -14,8 +14,16 @@ import properties.Defaults;
 import tools.Pen;
 import tools.Tool;
 
+/**
+ * A whiteboard object.
+ * 
+ * This allows users to draw on a center panel. They can change colors/sizes and pan around the whiteboard.
+ */
 public class Whiteboard extends BorderPane {
 
+    /**
+     * Create a Whiteboard object.
+     */
     public Whiteboard() {
 
 	// Setup canvas
@@ -33,15 +41,18 @@ public class Whiteboard extends BorderPane {
 	WidthPanel wp = new WidthPanel();
 	ColorPalette cp = new ColorPalette();
 
+	// Setup some styling.
 	top.setAlignment(Pos.CENTER_RIGHT);
 	top.setSpacing(10);
 	top.setPadding(new Insets(5));
 
+	// Add children to top.
 	top.getChildren().add(tp);
 	top.getChildren().add(wp);
 	top.getChildren().add(cp);
 	top.autosize();
 
+	// Setup the border layout.
 	setCenter(canvas);
 	setTop(top);
     }

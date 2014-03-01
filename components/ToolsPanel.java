@@ -15,6 +15,9 @@ import tools.Eraser;
 import tools.Pen;
 import tools.Tool;
 
+/**
+ * Allows a user to change their tool.
+ */
 public class ToolsPanel extends HBox {
 
     public static String PEN_ICON = "../images/pen.png";
@@ -26,30 +29,46 @@ public class ToolsPanel extends HBox {
     private Tool tools;
     private Canvas canvas;
 
+    /**
+     * Create a ToolsPanel.
+     */
     public ToolsPanel(Tool tools, Canvas canvas) {
 	super();
 
+	// Setup variables.
 	this.tools = tools;
 	this.canvas = canvas;
+
+	// Create the buttons.
 	penBtn = new Button();
 	eraserBtn = new Button();
-
 	createBtn(penBtn, PEN_ICON);
 	createBtn(eraserBtn, ERASER_ICON);
 	setupButtons();
+
+	// The pen is the initial button.
 	setActive(penBtn);
     }
 
+    /**
+     * Creates a uniform styled button.
+     */
     private void createBtn(Button btn, String imgLocation) {
+	// Create the button
 	Image img = new Image(getClass().getResourceAsStream(imgLocation), BTN_SIZE, BTN_SIZE, true, true);
 	ImageView imgView = new ImageView(img);
 	btn.setGraphic(imgView);
 	btn.setPrefSize(BTN_SIZE, BTN_SIZE);
 
+	// Add it to the HBox.
 	getChildren().add(btn);
     }
 
+    /**
+     * Setup the button actions.
+     */
     private void setupButtons() {
+	// Change the tool to the pen when clicked.
 	penBtn.setOnAction(new EventHandler<ActionEvent>() {
 	    @Override
 	    public void handle(ActionEvent arg0) {
@@ -59,6 +78,7 @@ public class ToolsPanel extends HBox {
 
 	});
 
+	// Change the tool to the eraser when clicked.
 	eraserBtn.setOnAction(new EventHandler<ActionEvent>() {
 	    @Override
 	    public void handle(ActionEvent arg0) {
@@ -69,9 +89,14 @@ public class ToolsPanel extends HBox {
 	});
     }
 
+    /**
+     * Set a button to look active. Also sets the other buttons inactive.
+     */
     private void setActive(Button btn) {
+	// Show the active button.
 	btn.setBorder(new Border(new BorderStroke(Color.CORNFLOWERBLUE, BorderStrokeStyle.SOLID, null, null)));
 
+	// Deactivate the rest of the buttons.
 	for (Node n : getChildren()) {
 	    if (!n.equals(btn)) {
 		((Button) n).setBorder(null);

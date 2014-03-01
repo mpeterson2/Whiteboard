@@ -10,11 +10,17 @@ import javafx.scene.paint.Color;
 import properties.Properties;
 import properties.PropertiesListener;
 
+/**
+ * Allows a user to select a foreground and background color.
+ */
 public class ColorPalette extends GridPane implements PropertiesListener {
 
     private ColorPicker foreColorPicker;
     private ColorPicker backColorPicker;
 
+    /**
+     * Create a ColorPalette object.
+     */
     public ColorPalette() {
 	// Create background color picker.
 	Label backLabel = new Label("Background");
@@ -49,22 +55,34 @@ public class ColorPalette extends GridPane implements PropertiesListener {
 	setHalignment(foreLabel, HPos.CENTER);
     }
 
+    /**
+     * Tells the Properties that a color has been changed.
+     */
     public void setColor(Color color) {
-	Properties.setColor(color);
+	Properties.setForeColor(color);
     }
 
+    /**
+     * Tells the properties that the background color has been changed.
+     */
     public void setBackground(Color color) {
-	Properties.setBackground(color);
+	Properties.setBackColor(color);
     }
 
+    /**
+     * If the foreground is changed, this will tell the foreground color picker to change colors.
+     */
     @Override
     public void onForeColorChng(Color color) {
-	// foregroundBtn.setBackground(new Background(new BackgroundFill(color, new CornerRadii(5.0), null)));
+	foreColorPicker.setValue(color);
     }
 
+    /**
+     * If the background is changed, this will tell the background color picker to change colors.
+     */
     @Override
     public void onBackColorChng(Color color) {
-	// backgroundBtn.setBackground(new Background(new BackgroundFill(color, new CornerRadii(5.0), null)));
+	backColorPicker.setValue(color);
     }
 
     @Override

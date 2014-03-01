@@ -9,19 +9,27 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
 import properties.Properties;
 
+/**
+ * This allows a user to change the width of a Shape.
+ */
 public class WidthPanel extends VBox {
 
     Label widthLabel;
     Slider widthSlider;
 
+    /**
+     * Create a WidthPanel object.
+     */
     public WidthPanel() {
-	widthLabel = new Label("Width: 5");
+	// Create the GUI.
+	widthSlider = new Slider(0.1, 100.0, Properties.getWidth());
+	widthLabel = new Label("Width: " + widthSlider.getValue());
 
-	widthSlider = new Slider(0.1, 100.0, 5.0);
+	// Setup what happens when the slider changes.
 	widthSlider.valueProperty().addListener(new ChangeListener<Number>() {
-
 	    @Override
 	    public void changed(ObservableValue<? extends Number> ov, Number oldVal, Number newVal) {
+		// Make it look good with a format.
 		DecimalFormat df = new DecimalFormat("#.#");
 		double val = Double.parseDouble(df.format(newVal));
 		widthLabel.setText("Width: " + val);
@@ -30,7 +38,7 @@ public class WidthPanel extends VBox {
 
 	});
 
-
+	// Add the Nodes.
 	getChildren().add(widthLabel);
 	getChildren().add(widthSlider);
     }
