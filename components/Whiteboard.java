@@ -37,7 +37,6 @@ public class Whiteboard extends BorderPane {
 
 	// Set up tools
 	new Tool().setTool(new Pen(canvas));
-	new Pen(canvas);
 
 	setCenter(canvas);
 	setTop(top);

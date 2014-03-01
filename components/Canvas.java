@@ -24,6 +24,10 @@ public class Canvas extends Pane implements PropertiesListener {
 	getChildren().add(s);
     }
 
+    public double getZoom() {
+	return getScaleX();
+    }
+
     @Override
     public void onBackColorChng(Color color) {
 	setBackground(color);
