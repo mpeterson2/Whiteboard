@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
@@ -22,6 +23,7 @@ public class WidthPanel extends VBox {
      */
     public WidthPanel() {
 	// Create the GUI.
+	setAlignment(Pos.CENTER);
 	widthSlider = new Slider(0.1, 100.0, Properties.getWidth());
 	widthLabel = new Label("Width: " + widthSlider.getValue());
 
