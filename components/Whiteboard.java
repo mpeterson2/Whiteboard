@@ -46,7 +46,7 @@ public class Whiteboard extends BorderPane {
 	ColorPalette cp = new ColorPalette();
 
 	// Setup some styling.
-	topControls.setAlignment(Pos.CENTER_RIGHT);
+	topControls.setAlignment(Pos.CENTER_LEFT);
 	topControls.setSpacing(10);
 	topControls.setPadding(new Insets(5));
 
