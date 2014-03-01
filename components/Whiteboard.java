@@ -4,10 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -33,10 +30,9 @@ public class Whiteboard extends BorderPane {
      * @param scene
      */
     public Whiteboard() {
-
 	// Setup canvas
 	canvas = new Canvas();
-	canvas.setBorder(new Border(new BorderStroke(Color.DARKGRAY, BorderStrokeStyle.SOLID, null, null)));
+	setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
 
 	// Setup tools
 	tools = new Tool();
@@ -77,5 +73,7 @@ public class Whiteboard extends BorderPane {
 
     private void setupBottom() {
 	bottom = new HBox();
+	bottom.setBackground(new Background(new BackgroundFill(Defaults.DEFAULT_PANE_COLOR, null, null)));
+	bottom.getChildren().add(new ZoomPanel(canvas));
     }
 }

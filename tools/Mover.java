@@ -35,8 +35,8 @@ public class Mover extends Tool {
     public void onMouseDrag(MouseEvent e) {
 	// Change the translation of each Node on the Canvas.
 	for (Node c : getCanvas().getChildren()) {
-	    c.setTranslateX((c.getTranslateX() + e.getX()) / getCanvas().getZoom() - iniX / getCanvas().getZoom());
-	    c.setTranslateY((c.getTranslateY() + e.getY()) / getCanvas().getZoom() - iniY / getCanvas().getZoom());
+	    c.setTranslateX(c.getTranslateX() + e.getX() - iniX);
+	    c.setTranslateY(c.getTranslateY() + e.getY() - iniY);
 	}
 
 	// Set the inital X/Y points for the next drag.

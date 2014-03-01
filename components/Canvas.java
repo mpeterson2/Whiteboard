@@ -62,6 +62,14 @@ public class Canvas extends Pane implements PropertiesListener {
     }
 
     /**
+     * Set the zoom of this Canvas.
+     */
+    public void setZoom(double zoom) {
+	setScaleX(zoom);
+	setScaleY(zoom);
+    }
+
+    /**
      * Changes the background color and erase Shape color.
      */
     @Override
