@@ -1,8 +1,4 @@
 Whiteboard
 ==========
 
-A whiteboard written in Java. There's not too much to it, it's just a whiteboard.
-
-## Why?
-
-I had written this for a final project in my Object Oriented Programming class. Originally, I had used Swing, but I wanted to try to write it using JavaFX.
+A whiteboard written in Java, using JavaFx for the GUI. There are a few different tools including a pen, a color picker, and an eraser. You can pan around the board by holding right click and dragging. You can change the foreground and background colors and the pen width.
